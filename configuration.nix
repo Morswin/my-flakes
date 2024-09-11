@@ -4,10 +4,9 @@
 
 { config, pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+     ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -119,12 +118,12 @@
   # Kubernetes
   virtualisation = {
     docker.enable = true;
-    virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
+    # virtualbox.host = {
+    #   enable = true;
+    #   enableExtensionPack = true;
+    # };
   };
-  users.extraGroups.vboxusers.members = [ "morswin" ];
+  # users.extraGroups.vboxusers.members = [ "morswin" ];
 
   # OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -135,15 +134,6 @@
     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
   '';
   security.polkit.enable = true;
-  # programs.obs-studio = {
-  #   enable = true;
-  #   plugins = [
-  #     droidcam-obs
-  #   ];
-  # };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Steam
   programs.steam = {
@@ -159,12 +149,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment={
-    # sessionVariables = {
-    #   LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
-    # };
     systemPackages = with pkgs; [
       armcord
-      audacity
+      # audacity
       bat
       blender
       brave
@@ -172,11 +159,11 @@
       bun
       clamtk
       davinci-resolve
-      delta
+      # delta
       discord
       docker_27
       droidcam
-      dust
+      # dust
       eza
       fastfetch
       ffmpeg_7
@@ -186,7 +173,6 @@
       fishPlugins.tide
       fishPlugins.z
       gcc14
-      gh
       git
       github-desktop
       gimp
@@ -195,34 +181,29 @@
       grc
       home-manager
       hyperfine
-      inkscape
-      jenkins
+      i2pd
+      # inkscape
+      # jenkins
       jp2a
       keepassxc
       kitty
       krita
-      kubernetes
-      libgcc
-      libGL
+      # kubernetes
       libreoffice-qt6-fresh
       logisim
       lutris
-      mesa  # OpenGL shit
-      minikube
-      mono5
       neovim
       nerdfonts
+      nh  # Nix helper
       nix-index
-      nix-output-monitor
       nodejs_22
       obs-studio
-      # obs-studio-plugins.droidcam-obs
       obsidian
-      ollama
+      # ollama
       patchelf
-      podman
-      podman-desktop
-      poetry
+      # podman
+      # podman-desktop
+      # poetry
       procs
       python311
       python311Packages.opencv4
@@ -235,12 +216,8 @@
       rocmPackages.rocm-smi
       rustup
       steam
-      telegram-desktop
       thunderbird
       tldr
-      tokei
-      tor
-      virtualbox
       vlc
       vscodium
       wget
@@ -255,14 +232,8 @@
     ];
   };
 
-  # InvokeAI
-  # nix.settings.trusted-substituters = ["https://ai.cachix.org"];
-  # nix.settings.trusted-public-keys = ["ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="];
-
   nix = {
     settings = {
-      # trusted-substituters = ["https://ai.cachix.org"];  # InvokeAI
-      # trusted-public-keys = ["ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="]; # InvokeAI
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
