@@ -108,7 +108,7 @@
   users.defaultUserShell = pkgs.fish;
 
   # Davinci Resolve
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       rocmPackages.clr.icd
@@ -150,6 +150,7 @@
   # $ nix search wget
   environment={
     systemPackages = with pkgs; [
+      alacritty
       armcord
       # audacity
       bat

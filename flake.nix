@@ -7,9 +7,11 @@
     #   url = "github:nix-community/home-manager";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    # https://github.com/nix-community/nixGL
+    # nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, ... } @ inputs: 
+  outputs = { nixpkgs, nixgl, ... } @ inputs: 
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in
