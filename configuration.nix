@@ -167,7 +167,6 @@
   # $ nix search wget
   environment={
     systemPackages = with pkgs; [
-      alacritty
       armcord
       # audacity
       bat
@@ -181,7 +180,7 @@
       discord
       docker_27
       droidcam
-      # dust
+      dust
       eza
       fastfetch
       ffmpeg_7
@@ -200,13 +199,10 @@
       home-manager
       hyperfine
       i2pd
-      # inkscape
-      # jenkins
       jp2a
       keepassxc
-      kitty
+      # kitty
       krita
-      # kubernetes
       libreoffice-qt6-fresh
       logisim
       lutris
@@ -219,9 +215,6 @@
       obsidian
       # ollama
       patchelf
-      # podman
-      # podman-desktop
-      # poetry
       procs
       python311
       python311Packages.opencv4
