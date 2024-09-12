@@ -53,8 +53,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "pl";
-    xkbVariant = "";
+    xkb = { 
+      layout = "pl";
+      variant = "";
+    };
   };
 
   # Configure console keymap
@@ -110,8 +112,23 @@
   # Davinci Resolve
   hardware.graphics = {
     enable = true;
+    extraPackages32 = with pkgs.driversi686Linux; [ amdvlk ];
     extraPackages = with pkgs; [
+      amdvlk
+      libva
+      libvdpau-va-gl
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      rocmPackages.clr
       rocmPackages.clr.icd
+      rocmPackages.hipblas
+      rocmPackages.rocblas
+      rocmPackages.rocm-comgr
+      rocmPackages.rocm-runtime
+      rocmPackages.rocm-smi
+      rocmPackages.rocsolver
+      rocmPackages.rocsparse
+      vaapiVdpau
     ];
   };
 
@@ -214,7 +231,6 @@
       roboto-mono
       roboto-serif
       roboto-slab
-      rocmPackages.rocm-smi
       rustup
       steam
       thunderbird

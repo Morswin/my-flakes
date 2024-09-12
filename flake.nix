@@ -11,9 +11,12 @@
     # nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, nixgl, ... } @ inputs: 
+  outputs = { nixpkgs, ... } @ inputs: 
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    # pkgs = import nixpkgs {
+    #   system = "x86_64-linux";
+    # };
   in
   {
     # packages.x86_64-linux.hello = pkgs.hello;
