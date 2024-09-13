@@ -28,36 +28,46 @@
   time.timeZone = "Europe/Warsaw";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pl_PL.UTF-8";
-    LC_IDENTIFICATION = "pl_PL.UTF-8";
-    LC_MEASUREMENT = "pl_PL.UTF-8";
-    LC_MONETARY = "pl_PL.UTF-8";
-    LC_NAME = "pl_PL.UTF-8";
-    LC_NUMERIC = "pl_PL.UTF-8";
-    LC_PAPER = "pl_PL.UTF-8";
-    LC_TELEPHONE = "pl_PL.UTF-8";
-    LC_TIME = "pl_PL.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = { 
-      layout = "pl";
-      variant = "";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "pl_PL.UTF-8";
+      LC_IDENTIFICATION = "pl_PL.UTF-8";
+      LC_MEASUREMENT = "pl_PL.UTF-8";
+      LC_MONETARY = "pl_PL.UTF-8";
+      LC_NAME = "pl_PL.UTF-8";
+      LC_NUMERIC = "pl_PL.UTF-8";
+      LC_PAPER = "pl_PL.UTF-8";
+      LC_TELEPHONE = "pl_PL.UTF-8";
+      LC_TIME = "pl_PL.UTF-8";
     };
   };
+
+  # Switching to Hyperland
+  programs.hyprland.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  # Old DE stuff
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  # services.xserver.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+  # Configure keymap in X11
+  # services.xserver = {
+  #  xkb = { 
+  #    layout = "pl";
+  #    variant = "";
+  #  };
+  # };
+  # End of old DE stuff
 
   # Configure console keymap
   console.keyMap = "pl2";
@@ -74,7 +84,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -109,7 +119,7 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # Davinci Resolve
+  # Davinci Resolve and other stuff
   hardware.graphics = {
     enable = true;
     extraPackages32 = with pkgs.driversi686Linux; [ amdvlk ];
@@ -132,7 +142,6 @@
     ];
   };
 
-  # Kubernetes
   virtualisation = {
     docker.enable = true;
     # virtualbox.host = {
@@ -141,6 +150,10 @@
     # };
   };
   # users.extraGroups.vboxusers.members = [ "morswin" ];
+
+  services.i2pd = {
+    enable = false;
+  };
 
   # OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -167,6 +180,19 @@
   # $ nix search wget
   environment={
     systemPackages = with pkgs; [
+      # Hyperland (thanks Vimjoyer)
+      alacritty
+      dunst  # Notification deamon
+      kitty
+      libnotify  # dunst depends on this
+      rofi-wayland  # app launcher
+      swww  # wallpaper daemon
+      waybar  # the bar (hopefully not too high)
+      (waybar.overrideAttrs (oldAttrs: {
+          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+	})
+      )
+      # No longer Hyperland
       armcord
       # audacity
       bat
@@ -204,6 +230,7 @@
       # kitty
       krita
       libreoffice-qt6-fresh
+      librewolf
       logisim
       lutris
       neovim
@@ -215,7 +242,7 @@
       obsidian
       # ollama
       patchelf
-      procs
+      # procs
       python311
       python311Packages.opencv4
       python311Packages.pip
