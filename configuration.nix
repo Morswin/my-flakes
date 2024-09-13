@@ -44,30 +44,30 @@
   };
 
   # Switching to Hyperland
-  programs.hyprland.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  # # Old DE stuff
-  # # Enable the X11 windowing system.
-  # # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-
-  # # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-
-  # # Configure keymap in X11
-  # services.xserver = {
-  #   xkb = { 
-  #     layout = "pl";
-  #     variant = "";
-  #   };
+  # programs.hyprland.enable = true;
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # };
-  # # End of old DE stuff
+
+  # Old DE stuff
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  services.xserver.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    xkb = { 
+      layout = "pl";
+      variant = "";
+    };
+  };
+  # End of old DE stuff
 
   # Configure console keymap
   console.keyMap = "pl2";
@@ -180,19 +180,19 @@
   # $ nix search wget
   environment={
     systemPackages = with pkgs; [
-      # Hyperland (thanks Vimjoyer)
-      alacritty
-      dunst  # Notification deamon
-      kitty
-      libnotify  # dunst depends on this
-      rofi-wayland  # app launcher
-      swww  # wallpaper daemon
-      waybar  # the bar (hopefully not too high)
-      (waybar.overrideAttrs (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-	      })
-      )
-      # No longer Hyperland
+      # # Hyperland (thanks Vimjoyer)
+      # alacritty
+      # dunst  # Notification deamon
+      # kitty
+      # libnotify  # dunst depends on this
+      # rofi-wayland  # app launcher
+      # swww  # wallpaper daemon
+      # waybar  # the bar (hopefully not too high)
+      # (waybar.overrideAttrs (oldAttrs: {
+      #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+	    #   })
+      # )
+      # # No longer Hyperland
       armcord
       # audacity
       bat
@@ -215,7 +215,7 @@
       fishPlugins.sponge
       fishPlugins.tide
       fishPlugins.z
-      gcc14
+      # gcc14
       git
       github-desktop
       gimp
@@ -223,7 +223,7 @@
       gource
       grc
       home-manager
-      hyperfine
+      # hyperfine
       i2pd
       jp2a
       keepassxc
@@ -257,7 +257,7 @@
       tldr
       vlc
       vscodium
-      wget
+      # wget
       (wrapOBS {
         plugins = with obs-studio-plugins; [
           droidcam-obs
