@@ -26,6 +26,15 @@
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.home-manager
+        (
+	  {pkgs, ...}: {
+	    home-manager = {
+              useGlobalPkgs = true;
+	      useUserPackages = true;
+	      users.nixos = import ./home.nix;
+	    };
+	  }
+	)
       ];
     };
   };
