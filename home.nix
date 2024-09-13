@@ -15,12 +15,12 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  wayland.windowManager.hyprland = {
-    settings = {
-      enable = true;
-    };
-    systemd.enable = true;
-  };
+  # wayland.windowManager.hyprland = {
+  #   settings = {
+  #     enable = true;
+  #   };
+  #   systemd.enable = true;
+  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
