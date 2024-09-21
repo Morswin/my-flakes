@@ -201,6 +201,7 @@
       btop
       bun
       clamtk
+      conda
       davinci-resolve
       # delta
       discord
