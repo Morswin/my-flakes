@@ -201,7 +201,7 @@
       btop
       bun
       clamtk
-      conda
+      # conda
       davinci-resolve
       # delta
       discord
@@ -217,6 +217,7 @@
       fishPlugins.tide
       fishPlugins.z
       # gcc14
+      gh
       git
       github-desktop
       gimp
