@@ -204,6 +204,7 @@
       # conda
       davinci-resolve
       # delta
+      direnv
       discord
       docker_27
       droidcam
@@ -217,6 +218,7 @@
       fishPlugins.tide
       fishPlugins.z
       # gcc14
+      gdtoolkit_4
       gh
       git
       github-desktop
@@ -224,6 +226,7 @@
       godot_4
       gource
       grc
+      helix
       home-manager
       # hyperfine
       i2pd
@@ -231,22 +234,29 @@
       keepassxc
       # kitty
       krita
+      libclang
       libreoffice-qt6-fresh
       librewolf
+      lldb_18
       logisim
       lutris
       neovim
       nerdfonts
+      nil
       nh  # Nix helper
       nix-index
       nodejs_22
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+      # nodePackages.vscode-html-lanhuageserver-bin
       obs-studio
       obsidian
       # ollama
       patchelf
       # procs
       python311
-      python311Packages.opencv4
+      python311Packages.python-lsp-server
+      # python311Packages.opencv4
       python311Packages.pip
       r2modman
       roboto
@@ -268,6 +278,7 @@
           obs-pipewire-audio-capture
         ];
       })
+      yaml-language-server
     ];
   };
 
