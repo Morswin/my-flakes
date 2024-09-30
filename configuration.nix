@@ -240,6 +240,8 @@
       lldb_18
       logisim
       lutris
+      lynis
+      marksman
       neovim
       nerdfonts
       nil
