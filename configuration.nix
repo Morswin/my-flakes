@@ -266,11 +266,14 @@
       roboto-serif
       roboto-slab
       rustup
+      simplex-chat-desktop
       steam
       thunderbird
       tldr
       vlc
       vscodium
+      zig
+      zls
       # wget
       (wrapOBS {
         plugins = with obs-studio-plugins; [
