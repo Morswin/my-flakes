@@ -122,9 +122,9 @@
   # Davinci Resolve and other stuff
   hardware.graphics = {
     enable = true;
-    extraPackages32 = with pkgs.driversi686Linux; [ amdvlk ];
+    # extraPackages32 = with pkgs.driversi686Linux; [ amdvlk ];
     extraPackages = with pkgs; [
-      amdvlk
+      # amdvlk
       libva
       libvdpau-va-gl
       rocm-opencl-icd
@@ -193,7 +193,7 @@
 	    #   })
       # )
       # # No longer Hyperland
-      armcord
+      # armcord
       # audacity
       bat
       blender
@@ -208,7 +208,7 @@
       discord
       docker_27
       droidcam
-      dust
+      # dust
       eza
       fastfetch
       ffmpeg_7
@@ -237,12 +237,13 @@
       libclang
       libreoffice-qt6-fresh
       librewolf
+      # libgcc
       lldb_18
       logisim
       lutris
       lynis
       marksman
-      neovim
+      # neovim
       nerdfonts
       nil
       nh  # Nix helper
@@ -253,6 +254,7 @@
       # nodePackages.vscode-html-lanhuageserver-bin
       obs-studio
       obsidian
+      octave
       # ollama
       patchelf
       # procs
@@ -261,17 +263,17 @@
       # python311Packages.opencv4
       python311Packages.pip
       r2modman
-      roboto
-      roboto-mono
-      roboto-serif
-      roboto-slab
+      # roboto
+      # roboto-mono
+      # roboto-serif
+      # roboto-slab
       rustup
       simplex-chat-desktop
       steam
       thunderbird
       tldr
       vlc
-      vscodium
+      # vscodium
       zig
       zls
       # wget
