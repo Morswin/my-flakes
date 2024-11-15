@@ -127,8 +127,8 @@
       # amdvlk
       libva
       libvdpau-va-gl
-      rocm-opencl-icd
-      rocm-opencl-runtime
+      # rocm-opencl-icd
+      # rocm-opencl-runtime
       rocmPackages.clr
       rocmPackages.clr.icd
       rocmPackages.hipblas
@@ -144,16 +144,19 @@
 
   virtualisation = {
     docker.enable = true;
-    # virtualbox.host = {
-    #   enable = true;
-    #   enableExtensionPack = true;
-    # };
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
   };
   # users.extraGroups.vboxusers.members = [ "morswin" ];
 
-  services.i2pd = {
-    enable = false;
-  };
+  # services.i2pd = {
+  #   enable = true;
+  #   websocket = {
+  #     port = 7656;
+  #   };
+  # };
 
   # OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -172,6 +175,7 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -201,7 +205,6 @@
       btop
       bun
       clamtk
-      # conda
       davinci-resolve
       # delta
       direnv
@@ -217,7 +220,6 @@
       fishPlugins.sponge
       fishPlugins.tide
       fishPlugins.z
-      # gcc14
       gdtoolkit_4
       gh
       git
@@ -226,6 +228,7 @@
       godot_4
       gource
       grc
+      handbrake
       helix
       home-manager
       # hyperfine
@@ -240,10 +243,11 @@
       # libgcc
       lldb_18
       logisim
+      losslesscut-bin
       lutris
       lynis
       marksman
-      # neovim
+      # minecraft
       nerdfonts
       nil
       nh  # Nix helper
@@ -257,26 +261,23 @@
       octave
       # ollama
       patchelf
+      php
       # procs
       python311
       python311Packages.python-lsp-server
-      # python311Packages.opencv4
       python311Packages.pip
       r2modman
-      # roboto
-      # roboto-mono
-      # roboto-serif
-      # roboto-slab
       rustup
       simplex-chat-desktop
       steam
       thunderbird
       tldr
       vlc
-      # vscodium
+      vscodium
+      whatsapp-for-linux
+      xd
       zig
       zls
-      # wget
       (wrapOBS {
         plugins = with obs-studio-plugins; [
           droidcam-obs
