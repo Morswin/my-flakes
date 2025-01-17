@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "My NixOS configuration flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -9,32 +9,34 @@
     };
     # https://github.com/nix-community/nixGL
     # nixgl.url = "github:nix-community/nixGL";
+    # stylix.url = "github:danth/stylix";
   };
 
-  outputs = { nixpkgs, ... } @ inputs: 
-  let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  outputs = { nixpkgs, home-manager, ... } @ inputs: 
+  # let
+    # pkgs = nixpkgs.legacyPackages.x86_64-linux;
     # pkgs = import nixpkgs {
     #   system = "x86_64-linux";
     # };
-  in
+  # in
   {
     # packages.x86_64-linux.hello = pkgs.hello;
     # packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
-        inputs.home-manager.nixosModules.home-manager
+        home-manager.nixosModules.home-manager
         (
-	  {pkgs, ...}: {
-	    home-manager = {
+	        {pkgs, ...}: {
+	          home-manager = {
               useGlobalPkgs = true;
-	      useUserPackages = true;
-	      users.morswin = import ./home.nix;
-	    };
-	  }
-	)
+	            useUserPackages = true;
+	            users.morswin = import ./home.nix;
+	          };
+	        }
+	      )
       ];
     };
   };

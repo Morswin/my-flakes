@@ -24,10 +24,17 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  # home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+  home.packages = [
+    # System
+    pkgs.kitty
+    # Development
+    pkgs.bun
+    pkgs.nodejs_23
+    pkgs.php
+    pkgs.python314
+    pkgs.rustup
+    # University
+    
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -41,7 +48,17 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  # ];
+  ];
+
+  # stylix = {
+  #   enable = true;
+  #   fonts = {
+  #     serif = {
+  #       package = pkgs.minecraftia;
+  #       name = "Minecraftia";
+  #     };
+  #   };
+  # };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

@@ -76,7 +76,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -98,7 +98,7 @@
   users.users.morswin = {
     isNormalUser = true;
     description = "morswin";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "render" "video" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -141,6 +141,9 @@
       vaapiVdpau
     ];
   };
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
 
   virtualisation = {
     docker.enable = true;
@@ -176,6 +179,7 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
+  services.logmein-hamachi.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -198,17 +202,19 @@
       # )
       # # No longer Hyperland
       # armcord
-      # audacity
+      audacity
       bat
       blender
+      blender-hip
       brave
       btop
-      bun
+      # bun
       clamtk
-      davinci-resolve
+      # davinci-resolve
       # delta
       direnv
       discord
+      discord-screenaudio
       docker_27
       droidcam
       # dust
@@ -230,10 +236,12 @@
       grc
       handbrake
       helix
-      home-manager
+      # home-manager
       # hyperfine
       i2pd
+      # jetbrains.idea-community-src
       jp2a
+      kdePackages.kdenlive
       keepassxc
       # kitty
       krita
@@ -243,38 +251,52 @@
       # libgcc
       lldb_18
       logisim
+      logmein-hamachi
       losslesscut-bin
       lutris
       lynis
       marksman
       # minecraft
-      nerdfonts
+      # minecraftia  # minecraft font for system
+      # nerdfonts
       nil
       nh  # Nix helper
       nix-index
-      nodejs_22
+      # nodejs_22
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      nodePackages.intelephense
       # nodePackages.vscode-html-lanhuageserver-bin
       obs-studio
       obsidian
-      octave
+      # octave
+      opentabletdriver  # Drivers to graphical tablet
       # ollama
       patchelf
-      php
+      # php
+      prismlauncher
       # procs
-      python311
-      python311Packages.python-lsp-server
-      python311Packages.pip
+      # python311
+      # python311Packages.python-lsp-server
+      # python311Packages.pip
+      # qt6.full
+      # qtcreator
       r2modman
-      rustup
+      # rustup
       simplex-chat-desktop
       steam
+      superTuxKart
+      texliveFull
       thunderbird
       tldr
+      transmission_4-qt6
+      umlet
+      unetbootin
       vlc
       vscodium
       whatsapp-for-linux
+      wine
+      xclicker
       xd
       zig
       zls
