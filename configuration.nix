@@ -43,14 +43,6 @@
     };
   };
 
-  # Switching to Hyperland
-  # programs.hyprland.enable = true;
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
-
-  # Old DE stuff
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -67,7 +59,6 @@
       variant = "";
     };
   };
-  # End of old DE stuff
 
   # Configure console keymap
   console.keyMap = "pl2";
@@ -105,21 +96,10 @@
     ];
   };
 
-  # Python libraries
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    zlib # numpy
-    libgcc  # sqlalchemy
-    # that's where the shared libs go, you can find which one you need using 
-    # nix-locate --top-level libstdc++.so.6  (replace this with your lib)
-    # ^ this requires `nix-index` pkg
-  ];
-
   # Fish
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # Davinci Resolve and other stuff
   hardware.graphics = {
     enable = true;
     # extraPackages32 = with pkgs.driversi686Linux; [ amdvlk ];
@@ -154,13 +134,6 @@
   };
   # users.extraGroups.vboxusers.members = [ "morswin" ];
 
-  # services.i2pd = {
-  #   enable = true;
-  #   websocket = {
-  #     port = 7656;
-  #   };
-  # };
-
   # OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
@@ -188,127 +161,22 @@
   # $ nix search wget
   environment={
     systemPackages = with pkgs; [
-      # # Hyperland (thanks Vimjoyer)
-      # alacritty
-      # dunst  # Notification deamon
-      # kitty
-      # libnotify  # dunst depends on this
-      # rofi-wayland  # app launcher
-      # swww  # wallpaper daemon
-      # waybar  # the bar (hopefully not too high)
-      # (waybar.overrideAttrs (oldAttrs: {
-      #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-	    #   })
-      # )
-      # # No longer Hyperland
-      # armcord
-      audacity
-      bat
+      # Packages that I didn't find a way to move to home-manager
       blender
       blender-hip
-      brave
-      btop
-      # bun
-      clamtk
-      # davinci-resolve
-      # delta
-      direnv
-      discord
-      discord-screenaudio
-      docker_27
-      droidcam
-      # dust
-      eza
-      fastfetch
-      ffmpeg_7
       fish
       fishPlugins.grc
       fishPlugins.sponge
       fishPlugins.tide
       fishPlugins.z
-      gdtoolkit_4
-      gh
-      git
-      github-desktop
-      gimp
-      godot_4
-      gource
       grc
+      # End of that sections
+      docker_27
+      ffmpeg_7
       handbrake
-      helix
-      # home-manager
-      # hyperfine
-      i2pd
-      # jetbrains.idea-community-src
-      jp2a
-      kdePackages.kdenlive
-      keepassxc
-      # kitty
-      krita
-      libclang
-      libreoffice-qt6-fresh
-      librewolf
-      # libgcc
-      lldb_18
-      logisim
-      logmein-hamachi
-      losslesscut-bin
-      lutris
-      lynis
       marksman
-      # minecraft
-      # minecraftia  # minecraft font for system
-      # nerdfonts
-      nil
-      nh  # Nix helper
-      nix-index
-      # nodejs_22
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
-      nodePackages.intelephense
-      # nodePackages.vscode-html-lanhuageserver-bin
-      obs-studio
-      obsidian
       # octave
-      opentabletdriver  # Drivers to graphical tablet
-      # ollama
-      patchelf
-      # php
-      prismlauncher
-      # procs
-      # python311
-      # python311Packages.python-lsp-server
-      # python311Packages.pip
-      # qt6.full
-      # qtcreator
-      r2modman
-      # rustup
-      simplex-chat-desktop
-      steam
-      superTuxKart
-      texliveFull
-      thunderbird
-      tldr
       transmission_4-qt6
-      umlet
-      unetbootin
-      vlc
-      vscodium
-      whatsapp-for-linux
-      wine
-      xclicker
-      xd
-      zig
-      zls
-      (wrapOBS {
-        plugins = with obs-studio-plugins; [
-          droidcam-obs
-          wlrobs
-          obs-backgroundremoval 
-          obs-pipewire-audio-capture
-        ];
-      })
-      yaml-language-server
     ];
   };
 

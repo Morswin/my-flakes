@@ -33,7 +33,7 @@
 	          home-manager = {
               useGlobalPkgs = true;
 	            useUserPackages = true;
-	            users.morswin = import ./home.nix;
+	            users.morswin.imports = [ ./home.nix ];
 	          };
 	        }
 	      )
