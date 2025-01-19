@@ -15,33 +15,41 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  # wayland.windowManager.hyprland = {
-  #   settings = {
-  #     enable = true;
-  #   };
-  #   systemd.enable = true;
-  # };
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = pkgs.hyprland;
+    extraConfig = ''
+      bind = $mainMod, S, exec, rofi -show drun -show-icons
 
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   package = pkgs.hyprland;
-  #   # plugins = [
-  #   #   pkgs.hyprlandPlugins.waybar
-  #   # ];
-  # };
+    '';  # exec-once = bash ~/.config.hypr/start.sh
+    # plugins = [
+    #   pkgs.hyprlandPlugins.waybar
+    # ];
+  };
 
+  # Interactions between apps
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+  
   programs = {
     helix = {
       enable = true;
       settings = {  # Why it doesn't work?
-        # theme = "gruvbox";
-        theme = "ao";
+        theme = "gruvbox";
         editor = {
           line-number = "relative";
         };
       };
     };
-    kitty.enable = true;
+    kitty = {
+      enable = true;
+      settings = {
+        background_opacity = 0.7;
+        background_blur = 2;
+      };
+    };
     obs-studio = {
       enable = true;
       plugins = [
@@ -52,13 +60,16 @@
       ];
     };
   };
-  # programs.fish.enable = true;
-  # # # users.defaultUserShell = pkgs.fish;
-  # programs.fish.shellInit = ''command fastfetch --logo "~/Pictures/logo/Nixos-Pepe.txt"'';
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    # Hyprland
+    pkgs.dunst   # Notifications
+    pkgs.libnotify  # Dunst dependency
+    pkgs.rofi-wayland  # App launcher
+    pkgs.swww  # Wallpaper deamon
+    pkgs.waybar
     # System UX
     pkgs.bat  # Prettier cat
     pkgs.btop  # Prettier htop
