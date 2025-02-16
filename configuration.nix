@@ -11,6 +11,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  hardware.cpu.x86.msr.enable = true;
+  # boot.kernelModules = [ "msr" ];
   # AMDGPU driver
   boot.initrd.kernelModules = [ "amdgpu" ];
 
@@ -49,6 +52,8 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+
+  programs.hyprland.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -101,7 +106,10 @@
   # Fish
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-
+  hardware.amdgpu.opencl.enable = true;
+  services.xmrig.settings = {
+    opencl = true;
+  };
   hardware.graphics = {
     enable = true;
     # extraPackages32 = with pkgs.driversi686Linux; [ amdvlk ];
@@ -113,12 +121,12 @@
       # rocm-opencl-runtime
       rocmPackages.clr
       rocmPackages.clr.icd
-      rocmPackages.hipblas
-      rocmPackages.rocblas
+      # rocmPackages.hipblas
+      # rocmPackages.rocblas
       rocmPackages.rocm-comgr
       rocmPackages.rocm-runtime
       rocmPackages.rocm-smi
-      rocmPackages.rocsolver
+      # rocmPackages.rocsolver
       rocmPackages.rocsparse
       vaapiVdpau
     ];
@@ -155,6 +163,7 @@
   };
 
   services.logmein-hamachi.enable = true;
+  # services.flatpak.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -171,7 +180,12 @@
       fishPlugins.sponge
       fishPlugins.tide
       fishPlugins.z
+      # flatpak  # For these few apps that I cannot manage to run on nixos the intended way
+      clinfo
+      opencl-headers
       grc
+      radeontop  # Like htop but for radeon gpu
+      rocmPackages.rocminfo
       # End of that sections
       docker_27
       ffmpeg_7

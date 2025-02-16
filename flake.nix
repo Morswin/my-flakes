@@ -7,12 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # https://github.com/nix-community/nixGL
-    # nixgl.url = "github:nix-community/nixGL";
-    # stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { nixpkgs, home-manager, ... } @ inputs: 
+  outputs = { nixpkgs, home-manager, stylix, ... } @ inputs: 
   # let
     # pkgs = nixpkgs.legacyPackages.x86_64-linux;
     # pkgs = import nixpkgs {
